@@ -46,7 +46,6 @@ def master?
 end
 
 def add_gems
-  gem 'bootstrap', '5.0.0'
   if rails_7? || master?
     gem 'devise', git: 'https://github.com/heartcombo/devise', branch: 'master'
   else
@@ -61,8 +60,9 @@ def add_gems
   gem 'name_of_person', '~> 1.1'
   gem 'noticed', '~> 1.2'
   gem 'omniauth-facebook', '~> 8.0'
-  gem 'omniauth-github', '~> 2.0'
-  gem 'omniauth-twitter', '~> 1.4'
+  # gem 'omniauth-github', '~> 2.0'
+  # gem 'omniauth-twitter', '~> 1.4'
+  gem 'omniauth-google-oauth2', '~> 1.0'
   gem 'pundit', '~> 2.1'
   gem 'sidekiq', '~> 6.2'
   gem 'sitemap_generator', '~> 6.1'
@@ -149,7 +149,7 @@ def add_webpack
 end
 
 def add_javascript
-  run "yarn add expose-loader @popperjs/core bootstrap local-time @rails/request.js"
+  run "yarn add expose-loader @popperjs/core local-time @rails/request.js"
 
   if rails_5?
     run "yarn add @rails/actioncable@pre @rails/actiontext@pre @rails/activestorage@pre @rails/ujs@pre"
@@ -219,7 +219,7 @@ def add_multiple_authentication
 
   template = """
   env_creds = Rails.application.credentials[Rails.env.to_sym] || {}
-  %i{ facebook twitter github }.each do |provider|
+  %i{ facebook google_oauth2}.each do |provider|
     if options = env_creds[provider]
       config.omniauth provider, options[:app_id], options[:app_secret], options.fetch(:options, {})
     end
