@@ -71,7 +71,7 @@ def add_gems
 
   if rails_5?
     gsub_file "Gemfile", /gem 'sqlite3'/, "gem 'sqlite3', '~> 1.3.0'"
-    gem 'webpacker', '~> 5.3'
+    gem 'webpacker', '~> 5.4'
   end
 end
 
@@ -163,6 +163,14 @@ environment.plugins.append('Provide', new webpack.ProvidePlugin({
   JS
 
   insert_into_file 'config/webpack/environment.js', content + "\n", before: "module.exports = environment"
+end
+
+def add_tailwind
+  run "yarn uninstall tailwindcss postcss autoprefixer"
+  run "yarn install -D tailwindcss@npm:@tailwindcss/postcss7-compat @tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9"
+
+  copy_file "postcss.config.js"
+  copy_file "tailwind.config.js"
 end
 
 def add_hotwire
@@ -258,6 +266,7 @@ after_bundle do
   add_authorization
   add_webpack
   add_javascript
+  add_tailwind
   add_announcements
   add_notifications
   add_multiple_authentication

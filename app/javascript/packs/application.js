@@ -3,16 +3,16 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-window.Rails = require("@rails/ujs")
-require("@hotwired/turbo-rails")
-require("@rails/activestorage").start()
-require("channels")
-//require("trix")
-//require("@rails/actiontext")
-require("local-time").start()
+import Rails from "@rails/ujs"
+import "@hotwired/turbo-rails"
+import * as ActiveStorage from "@rails/activestorage"
+import "channels"
+import * as LocalTime from "local-time"
+import "../stylesheets/application.scss"
 
-// Start Rails UJS
 Rails.start()
+ActiveStorage.start()
+LocalTime.start()
 
 // Stimulus
 import "controllers"

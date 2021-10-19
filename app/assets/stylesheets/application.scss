@@ -1,12 +1,4 @@
-// $navbar-default-bg: #312312;
-// $light-orange: #ff8c00;
-// $navbar-default-color: $light-orange;
-
 @import "font-awesome-sprockets";
 @import "font-awesome";
-@import "jumpstart/announcements";
 
-// Masquerade alert shouldn't have a bottom margin
-body > .alert {
-  margin-bottom: 0;
-}
+@import "jumpstart/announcements";
