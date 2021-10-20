@@ -55,6 +55,7 @@ def add_gems
   gem 'font-awesome-sass', '~> 5.15'
   gem 'friendly_id', '~> 5.4'
   gem 'hotwire-rails'
+  gem "view_component", require: "view_component/engine"
   gem 'image_processing'
   gem 'madmin'
   gem 'name_of_person', '~> 1.1'
