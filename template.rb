@@ -88,6 +88,12 @@ def set_application_name
   puts "You can change application name inside: ./config/application.rb"
 end
 
+def config_application
+  set_application_name
+
+  environment "config.logger = Logger.new(STDOUT)", env: 'development'
+end
+
 def add_users
   route "root to: 'home#index'"
   generate "devise:install"
@@ -261,7 +267,7 @@ add_template_repository_to_source_path
 add_gems
 
 after_bundle do
-  set_application_name
+  config_application
   stop_spring
   add_users
   add_authorization
