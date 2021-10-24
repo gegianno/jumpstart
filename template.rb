@@ -178,6 +178,9 @@ def add_tailwind
 
   copy_file "postcss.config.js"
   copy_file "tailwind.config.js"
+  
+  # uncomment to add tailwindcss/forms
+  # run "yarn add @tailwindcss/forms"
 end
 
 def add_hotwire
